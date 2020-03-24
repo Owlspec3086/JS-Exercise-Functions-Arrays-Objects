@@ -35,26 +35,26 @@ function addNumbers(num1, num2) {
  * the returned value should look like: 'Goodbye, Andy. Have a great day.'
  * 
 */
-function sayGoodbye(/* code here */) {
-  /* code here */
+function sayGoodbye(name) {
+  return `Goodbye, ${name}. Have a great day.`;
 }
 
 /**
- * ### Challenge `temperatureCtoF`
- * 
- * @instructions
- * This function should take an a temperature in celsius as an argument,
- * and return the temperature in fahrenheit, rounded to the nearest whole number. 
- * 
- * For example, if we invoke `temperatureCtoF`
- * passing 24 as the argument,
- * the returned value should be: 75
- * 
- * Hint 1: The formula for converting celsius to fahrenheit is t*9/5 + 32 where t is the temperature in celsius.
- * Hint 2: There is a very easy way to round numbers in JS. Do a google search to find out how. 
+* ### Challenge `temperatureCtoF`
+* 
+* @instructions
+* This function should take an a temperature in celsius as an argument,
+* and return the temperature in fahrenheit, rounded to the nearest whole number. 
+* 
+* For example, if we invoke `temperatureCtoF`
+* passing 24 as the argument,
+* the returned value should be: 75
+* 
+* Hint 1: The formula for converting celsius to fahrenheit is t*9/5 + 32 where t is the temperature in celsius.
+* Hint 2: There is a very easy way to round numbers in JS. Do a google search to find out how. 
 */
-function temperatureCtoF(/* code here */) {
-  /* code here */
+function temperatureCtoF(cel) {
+  return Math.round(cel * 9 / 5 + 32);
 }
 
 /**
@@ -63,7 +63,7 @@ function temperatureCtoF(/* code here */) {
  * @instructions
  * This function should take an a temperature and a unit (either 'F' or 'C') as arguments,
  * and return the temperature in fahrenheit, rounded to the nearest whole number. 
- * 
+ *                   //call//
  * For example, if we invoke `temperatureInF`
  * passing 88, 'F' as the arguments,
  * the returned value should be: '88F'
@@ -73,9 +73,15 @@ function temperatureCtoF(/* code here */) {
  * the returned value should be: '75F'
  * 
  * Hint: You can call your `temperatureCtoF` function from inside `temperatureInF`.
-*/
-function temperatureInF(/* code here */) {
-  /* code here */
+*/                  //what you put in () you want to pass number and string through the function.
+function temperatureInF(temp, unit) {
+  if (unit === 'F') {
+    return temp + unit;
+  }
+  else if (unit === 'C') {
+    return temperatureCtoF(temp) + 'F';
+  }
+
 }
 
 
@@ -95,8 +101,13 @@ function temperatureInF(/* code here */) {
  *   email: "leia@leia.com",
  * }
 */
-function makePersonObject(/* code here */) {
-  /* code here */
+function makePersonObject(id, name, email) {
+  let object = {
+    id: id,
+    name: name,
+    email: email
+  }
+  return object;
 }
 
 /**
@@ -112,8 +123,9 @@ function makePersonObject(/* code here */) {
  * passing { id: 1, name: 'Leia', email: 'leia@leia.com` } as the argument,
  * the returned value should look like `Hello, my name is Leia`.
 */
-function getName(/* code here */) {
-  /* code here */
+function getName(person) {
+  //object.key//
+  return `Hello, my name is ${person.name}`;
 }
 
 
@@ -132,8 +144,8 @@ function getName(/* code here */) {
  * passing in [ 'orange', 'grape', 'apple', 'banana', 'mango' ] as the argument,
  * the returned value should be: 2.
 */
-function appleIndex(/* code here */) {
-  /* code here */
+function appleIndex(array) {
+  return array.indexOf('apple');
 }
 
 /**
@@ -151,8 +163,16 @@ function appleIndex(/* code here */) {
  * passing in [ 'orange', 'apple', 'banana', 'apples', 'apple', 'mango' ] as the argument,
  * the returned value should be: [ false, true, false, false, true, false ].
 */
-function isItAnApple(/* code here */) {
-  /* code here */
+function isItAnApple(array) {
+
+  let array2 = []; //this is an empty array that will contain true if the corresponding is apple and false if its not apple. 
+  for (let i = 0; i < array.length; i++) {        //i++ means go up one and continue search. 
+    if (array[i] === 'apple') {
+      array2.push(true);
+    }
+    else array2.push(false);
+  }
+  return array2;
 }
 
 
@@ -210,7 +230,8 @@ function get3rdCar(inventory) {
  * it will return `This is a Lincoln Navigator`.
 */
 function getCarInfoByIndex(inventory, index) {
-  /* code here */
+  const car = inventory[index];
+  return `This is a ${car.car_make} ${car.car_model}`
 }
 
 /**
@@ -224,8 +245,9 @@ function getCarInfoByIndex(inventory, index) {
  * For example, if getLastCarInfo is invoked passing the inventory inside /data/inventory.js,
  * it will return `This is a Lincoln Town Car`.
 */
-function getLastCarInfo(/* code here */) {
-  /* code here */
+function getLastCarInfo(array) {
+  const car = array[array.length - 1];
+  return `This is a ${car.car_make} ${car.car_model}`
 }
 
 /**
@@ -237,8 +259,14 @@ function getLastCarInfo(/* code here */) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * getModelYears returns an array containing all the 'car_year's in the inventory.
 */
-function getModelYears(/* code here */) {
-  /* code here */
+// Using for loops!!
+function getModelYears(array) {
+  let array2 = [];
+  for (let i = 0; i < array.length; i++) {
+   array2.push(array[i].car_year); 
+  }
+    return array2
+
 }
 
 /**
@@ -254,9 +282,10 @@ function getModelYears(/* code here */) {
  * 
  * For example, if getCarInfoById is invoked with the inventory and the number 1,
  * it will return `This is a Lincoln Navigator`.
-*/
-function getCarInfoById(/* code here */) {
-  /* code here */
+*/                        
+// function getCarInfoById(array, num) {
+//   let car = array[num.length ];
+//   return `This is a ${car_make} ${car_model}`;
 }
 
 /**
@@ -327,9 +356,9 @@ if (typeof exports !== 'undefined') {
   if (appleIndex) { module.exports.appleIndex = appleIndex }
 
   if (isItAnApple) { module.exports.isItAnApple = isItAnApple }
-  
 
-  
+
+
   if (carMaker) { module.exports.carMaker = carMaker }
   if (getCarInfoByIndex) { module.exports.getCarInfoByIndex = getCarInfoByIndex }
   if (getLastCarInfo) { module.exports.getLastCarInfo = getLastCarInfo }
@@ -338,5 +367,5 @@ if (typeof exports !== 'undefined') {
   if (getModelYears) { module.exports.getModelYears = getModelYears }
   if (getOlderCars) { module.exports.getOlderCars = getOlderCars }
   if (getGermanCars) { module.exports.getGermanCars = getGermanCars }
- 
+
 }
